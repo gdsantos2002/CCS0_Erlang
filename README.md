@@ -1,6 +1,6 @@
 # Primeiro Trabalho Prático de **Programação Concorrente**
 
-Programa em **Erlang** para traduzir termos do **CCS0** (deadlock, prefixo e escolha não determinística) para o labelled transition system (LTS) correspondente.
+Programa em **_Erlang_** para traduzir termos do **CCS0** (deadlock, prefixo e escolha não determinística) para o labelled transition system (LTS) correspondente.
 
 1) (valorização: 2,5 valores) Escreva um tradutor que tem como input a abstract syntax tree (AST) do termo CCS0.
 
