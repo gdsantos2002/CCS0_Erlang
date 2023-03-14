@@ -39,4 +39,4 @@ translate(Server, AST) -> Server ! {translate, self(), AST},
 check_AST("a.0 + b.0") -> true.
 
 % Deadlock case
-deadlock(zero) -> 0.
+deadlock(0) -> zero.
