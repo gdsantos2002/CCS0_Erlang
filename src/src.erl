@@ -1,5 +1,5 @@
 -module(src).
--export([deadlock/1, rm_spaces/1, clean/1, join_words/1,
+-export([rm_spaces/1, clean/1, join_words/1,
             clean_input/1, translate/2, tree/2, loop/0, start/0]).
 % -import(string, [replace/4]).
 % -import(lists, [filter/2]).
@@ -38,12 +38,7 @@ translate(Server, AST) -> Server ! {translate, self(), AST},
 
 % check_AST("a.0 + b.0") -> true.
 
-% Deadlock case
-deadlock(0) -> zero.
-
 tree(zero, List) -> List;
-tree({prefix, X, Rest}, List) -> tree(Rest, List ++ {string:concat("s", integer_to_list(length(List))), X, string:concat("s", integer_to_list(length(List) + 1))}).
-%tree({choice, {X1, A, R1}, {X2, B, R2}}, List) -> case R1 == R2 of 
+tree({prefix, X, Rest}, List) -> tree(Rest, List ++ [{string:concat("s", integer_to_list(length(List))), X, string:concat("s", integer_to_list(length(List) + 1))}]).
+% tree({choice, {F1, X, Rest1}, {F2, Y, Rest2}}, List) -> case R1 == R2 of 
 %    true -> tree();
-
-
