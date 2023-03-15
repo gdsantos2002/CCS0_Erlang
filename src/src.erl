@@ -36,7 +36,7 @@ translate(Server, AST) -> Server ! {translate, self(), AST},
         {response, LTS} -> LTS
     end.
 
-% check_AST("a.0 + b.0") -> true.
+% check_AST("a.0 + b.0") -> true. 
 
 tree(zero, List) -> List;
 tree({prefix, X, Rest}, List) -> tree(Rest, List ++ [{string:concat("s", integer_to_list(length(List))), X, string:concat("s", integer_to_list(length(List) + 1))}]);
