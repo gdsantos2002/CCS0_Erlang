@@ -42,9 +42,11 @@ tree(zero, List) -> List;
 tree({prefix, X, Rest}, List) -> tree(Rest, List ++ [{string:concat("s", integer_to_list(length(List))), X, string:concat("s", integer_to_list(length(List) + 1))}]);
 tree({choice, {prefix, X, Rest}, zero}, List) -> tree(Rest, List ++ [{string:concat("s", integer_to_list(length(List))), X, string:concat("s", integer_to_list(length(List) + 1))}]);
 tree({choice, zero, {prefix, X, Rest}}, List) -> tree(Rest, List ++ [{string:concat("s", integer_to_list(length(List))), X, string:concat("s", integer_to_list(length(List) + 1))}]);
-% doesn't work yet
+% bellow doesn't work yet
 tree({choice, {prefix, X, Rest}, {prefix, Y, Rest}}, List) -> tree(Rest, List ++ [{string:concat("s", integer_to_list(length(List))), X, string:concat("s", integer_to_list(length(List) + 1))}]),
     tree(Rest, List ++ [{string:concat("s", integer_to_list(length(List) - 1)), Y, string:concat("s", integer_to_list(length(List)))}]).
+
+
 % test with: src:tree({prefix, "a", {prefix, "b", zero}}, []).
 % test with: src:tree({choice, {prefix, "a", {prefix, "b", zero}}, zero}, []).
  
