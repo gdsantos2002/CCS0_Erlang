@@ -43,3 +43,4 @@ tree({prefix, X, Rest}, List) -> tree(Rest, List ++ [{string:concat("s", integer
 % test with: src:tree({prefix, "a", {prefix, "b", zero}}, []).
 tree({choice, {prefix, X, Rest}, zero}, List) -> tree(Rest, List ++ [{string:concat("s", integer_to_list(length(List))), X, string:concat("s", integer_to_list(length(List) + 1))}]);
 tree({choice, zero, {prefix, X, Rest}}, List) -> tree(Rest, List ++ [{string:concat("s", integer_to_list(length(List))), X, string:concat("s", integer_to_list(length(List) + 1))}]).
+ 
