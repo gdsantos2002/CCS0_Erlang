@@ -39,15 +39,15 @@ translate(Server, AST) -> Server ! {translate, self(), AST},
 % check_AST("a.0 + b.0") -> true. 
 
 tree(zero, List) -> List;
-tree({prefix, X, zero}, List) -> tree(zero, List ++ [{string:concat("s", integer_to_list(length(List))), X, "sf"}]); 
+tree({prefix, X, zero}, List) -> List ++ [{string:concat("s", integer_to_list(length(List))), X, "sf"}]; 
 tree({prefix, X, Rest}, List) -> tree(Rest, List ++ [{string:concat("s", integer_to_list(length(List))), X, string:concat("s", integer_to_list(length(List) + 1))}]);
 
-% bellow doesn't work yet
-tree({choice, {_, X, Rest}, {_, Y, Rest}}, List) -> tree(Rest, List ++ [{string:concat("s", integer_to_list(length(List))), X, string:concat("s", integer_to_list(length(List) + 1))}]) ++
-    tree(Rest, List ++ [{string:concat("s", integer_to_list(length(List))), Y, string:concat("s", integer_to_list(length(List) + 1))}]);
+tree({choice, C1, {_, Y, zero}}, List) -> L1 = tree(C1, List),
+    L1 ++ [{string:concat("s", integer_to_list(length(List))), Y, "sf"}];
 
-tree({choice, {_, X, R1}, {_, Y, R2}}, List) -> L1 = tree(R1, List ++ [{string:concat("s", integer_to_list(length(List))), X, tree}]),
-tree(R2, L1 ++ [{string:concat("s", integer_to_list(length(List))), Y, string:concat("s", integer_to_list(length(List) + length(L1) + 1))}]).
+tree({choice, C1, {_, Y, Rest}}, List) -> L1 = tree(C1, List),
+    tree(Rest, L1 ++ [{string:concat("s", integer_to_list(length(List))), Y, string:concat("s", integer_to_list(length(L1) - length(List) + 1))}]).
+% tree({choice, C1, C2}, List) -> tree(C1, List) ++ tree(C2, List).
 
 % test with: src:tree({prefix, "a", {prefix, "b", zero}}, []).
 % test with: src:tree({choice, {prefix, "a", {prefix, "b", zero}}, zero}, []).
