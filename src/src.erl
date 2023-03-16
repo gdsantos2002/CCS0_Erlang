@@ -1,15 +1,11 @@
 -module(src).
 -export([rm_spaces/1, clean/1, join_words/1, clean_input/1,
     translate/2, tree/2, loop/0, start/0]).
-% -import(string, [replace/4]).
-% -import(lists, [filter/2]).
 % -compile(export_all).         % avoid warnings
 
 
-start() -> spawn(src, loop, []).
+%           Maybe it will be useful for the Parser
 
-
-% Define an alphabet?       A = {a, b} 
 
 % Remove all ' ' characters from the AST
 rm_spaces(AST) -> string:replace(AST, " ", "", all).
@@ -24,7 +20,12 @@ join_words(List) -> lists:concat(List).
 clean_input(AST) -> join_words(clean(rm_spaces(AST))).
 % test with: src:clean_input("a.0 + b.0").
 
-% just for testing
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+start() -> spawn(src, loop, []).
+
 loop() ->
     receive
         {translate, From, AST} -> From ! {response, tree(AST, [])},
@@ -35,8 +36,6 @@ translate(Server, AST) -> Server ! {translate, self(), AST},
     receive 
         {response, LTS} -> LTS
     end.
-
-% check_AST("a.0 + b.0") -> true. 
 
 count_final_state_transitions([], N) -> N;
 count_final_state_transitions([{_, _, "sf"}|R], N) -> count_final_state_transitions(R, N+1);
@@ -57,7 +56,5 @@ tree({choice, R, {_, Y, Rest}}, List) -> L1 = tree(R, List),
 
 % test with: src:tree({prefix, "a", {prefix, "b", zero}}, []).
 % test with: src:tree({choice, {prefix, "a", {prefix, "b", zero}}, zero}, []).
- 
 % test with: src:tree({choice, {prefix, "a", {choice, {prefix, "c", {prefix, "e", {prefix, "h", zero}}}, {prefix, "d", {prefix, "f", {prefix, "h", zero}}}}}, {prefix, "b", {prefix, "g", zero}}}, []).
-
 % test with: src:tree({choice, {prefix, "a", {prefix, "c", zero}}, {prefix, "b", {prefix, "c", zero}}}, []).
