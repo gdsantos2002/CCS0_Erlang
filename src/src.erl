@@ -58,4 +58,6 @@ tree({choice, R, {_, Y, Rest}}, List) -> L1 = tree(R, List),
 % test with: src:tree({prefix, "a", {prefix, "b", zero}}, []).
 % test with: src:tree({choice, {prefix, "a", {prefix, "b", zero}}, zero}, []).
  
-% src:tree({choice, {prefix, "a", {choice, {prefix, "c", {prefix, "e", {prefix, "h", zero}}}, {prefix, "d", {prefix, "f", {prefix, "h", zero}}}}}, {prefix, "b", {prefix, "g", zero}}}, []).
+% test with: src:tree({choice, {prefix, "a", {choice, {prefix, "c", {prefix, "e", {prefix, "h", zero}}}, {prefix, "d", {prefix, "f", {prefix, "h", zero}}}}}, {prefix, "b", {prefix, "g", zero}}}, []).
+
+% test with: src:tree({choice, {prefix, "a", {prefix, "c", zero}}, {prefix, "b", {prefix, "c", zero}}}, []).
