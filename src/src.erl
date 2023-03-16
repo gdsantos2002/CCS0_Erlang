@@ -54,7 +54,13 @@ tree({choice, R, {_, Y, zero}}, List) -> L1 = tree(R, List),
 tree({choice, R, {_, Y, Rest}}, List) -> L1 = tree(R, List),
     tree(Rest, L1 ++ [{string:concat("s", integer_to_list(length(List) - count_final_state_transitions(List, 0))), Y, string:concat("s", integer_to_list(length(L1) - count_final_state_transitions(L1, 0) + 1))}]).
 
-% test with: src:tree({prefix, "a", {prefix, "b", zero}}, []).
-% test with: src:tree({choice, {prefix, "a", {prefix, "b", zero}}, zero}, []).
-% test with: src:tree({choice, {prefix, "a", {choice, {prefix, "c", {prefix, "e", {prefix, "h", zero}}}, {prefix, "d", {prefix, "f", {prefix, "h", zero}}}}}, {prefix, "b", {prefix, "g", zero}}}, []).
-% test with: src:tree({choice, {prefix, "a", {prefix, "c", zero}}, {prefix, "b", {prefix, "c", zero}}}, []).
+% test with :
+%   c(src).
+%   Pid = src:start().
+%   src:translate(Pid, {prefix, "a", {prefix, "b", zero}}).
+%   src:translate(Pid, {prefix, "a", {prefix, "b", {prefix, "c", zero}}}).
+%   src:translate(Pid, {choice, {prefix, "a", {prefix, "b", zero}}, zero}).
+%   src:translate(Pid, {choice, {prefix, "a", zero}, {prefix, "b", zero}}).
+%   src:translate(Pid, {prefix, "a", {choice, {prefix, "b", zero}, {prefix, "c", zero}}}).
+%   src:translate(Pid, {choice, {prefix, "a", {prefix, "c", zero}}, {prefix, "b", {prefix, "c", zero}}}).
+%   src:translate(Pid, {choice, {prefix, "a", {choice, {prefix, "c", {prefix, "e", {prefix, "h", zero}}}, {prefix, "d", {prefix, "f", {prefix, "h", zero}}}}}, {prefix, "b", {prefix, "g", zero}}}).
