@@ -1,6 +1,6 @@
 -module(src).
--export([rm_spaces/1, clean/1, join_words/1,
-            clean_input/1, translate/2, tree/2, loop/0, start/0]).
+-export([rm_spaces/1, clean/1, join_words/1, clean_input/1,
+    translate/2, tree/2, loop/0, start/0]).
 % -import(string, [replace/4]).
 % -import(lists, [filter/2]).
 % -compile(export_all).         % avoid warnings
