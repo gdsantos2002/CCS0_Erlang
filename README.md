@@ -17,6 +17,6 @@ O termo **a.(b.0 + c.0)** pode ser representado pela **_AST_** **{_prefix_, 'a',
 
 ![My Image](./img/lts.png)
 
-Abaixo segue-se um exemplo de teste do funcionamento do nosso código para o **AST** dada acima, em que o _output_ é uma lista de tuplos com as transições correspondentes:
+Abaixo segue-se um exemplo de teste do funcionamento do nosso código para a **AST** dada acima, em que o _output_ é uma lista de tuplos com as transições correspondentes:
 
 ![My Image](./img/guide.png)
