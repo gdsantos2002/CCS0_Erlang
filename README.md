@@ -14,4 +14,4 @@ Por exemplo, o termo a.0 + b.0 pode ser representado pela **AST** {_choice_ {_pr
 ## Exemplo
 
 O termo a.c.0 + b.c.0 pode ser representado pela **_AST_** {choice, {prefix, "a", {prefix, "c", zero}}, {prefix, "b", {prefix, "c", zero}}}, que é corespondente ao seguinte LTS:
-![My Image](./ac0+bc0.png)
+![My Image](./ac0%2Bbc0.png)
