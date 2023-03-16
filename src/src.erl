@@ -45,10 +45,10 @@ tree({prefix, X, Rest}, List) -> tree(Rest, List ++ [{string:concat("s", integer
 tree({choice, R, zero}, List) -> tree(R, List);
 tree({choice, zero, R}, List) -> tree(R, List);
 
-tree({choice, C1, {_, Y, zero}}, List) -> L1 = tree(C1, List),
+tree({choice, R, {_, Y, zero}}, List) -> L1 = tree(R, List),
     L1 ++ [{string:concat("s", integer_to_list(length(List))), Y, "sf"}];
 
-tree({choice, C1, {_, Y, Rest}}, List) -> L1 = tree(C1, List),
+tree({choice, R, {_, Y, Rest}}, List) -> L1 = tree(R, List),
     tree(Rest, L1 ++ [{string:concat("s", integer_to_list(length(List))), Y, string:concat("s", integer_to_list(length(L1) - length(List) + 1))}]).
 % tree({choice, C1, C2}, List) -> tree(C1, List) ++ tree(C2, List).
 
