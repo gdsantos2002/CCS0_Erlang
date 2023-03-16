@@ -5,7 +5,7 @@
 Programa em **_Erlang_** para traduzir termos do **CCS0** (_deadlock_, prefixo e escolha não determinística) para o **_Labelled Transition System_** (**LTS**) correspondente.
 
 - 1) (valorização: 2,5 valores) Escreva um tradutor que tem como input a **_Abstract Syntax Tree_** (**AST**) do termo **CCS0**.
-Por exemplo, o termo a.0 + b.0 pode ser representado pela **AST** {_choice_ {_prefix_ 'a' zero} {_prefix_ 'b' zero}}.
+Por exemplo, o termo **a.0 + b.0** pode ser representado pela **AST** **{_choice_ {_prefix_ 'a' zero} {_prefix_ 'b' zero}}**.
 
 - 2) (valorização: 1 valor) Use a função anterior para implementar um _server_ **_Erlang_** que recebe a **AST** de um termo **CCS0** e envia de volta ao cliente o **LTS** correspondente ao termo.
 
@@ -13,5 +13,5 @@ Por exemplo, o termo a.0 + b.0 pode ser representado pela **AST** {_choice_ {_pr
 
 ## Exemplo
 
-O termo a.c.0 + b.c.0 pode ser representado pela **_AST_** {choice, {prefix, "a", {prefix, "c", zero}}, {prefix, "b", {prefix, "c", zero}}}, que é corespondente ao seguinte LTS:
+O termo **a.c.0 + b.c.0** pode ser representado pela **_AST_** **{_choice_, {_prefix_, 'a', {_prefix_, 'c', zero}}, {_prefix_, 'b', {_prefix_, 'c', zero}}}**, que é corespondente ao seguinte LTS:
 ![My Image](./ac0+bc0.png)
