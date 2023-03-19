@@ -13,10 +13,10 @@ Por exemplo, o termo **a.0 + b.0** pode ser representado pela **AST** **{_choice
 
 ## Exemplo
 
-O termo **a.(b.0 + c.0)** pode ser representado pela **_AST_** **{_prefix_, 'a', {_choice_, {_prefix_, 'b', zero}, {_prefix_, 'c', zero}}}**, que é corespondente ao seguinte **LTS**:
+O termo **a.(b.0 + c.0)** pode ser representado pela **_AST_** **{_prefix_, 'a', {_choice_, {_prefix_, 'b', zero}, {_prefix_, 'c', zero}}}**, que é correspondente ao seguinte **LTS**:
 
 ![My Image](./img/lts.png)
 
-Abaixo segue-se um exemplo de teste do funcionamento do nosso código para a **AST** dada acima, em que o _output_ é uma lista de tuplos com as transições correspondentes:
+Abaixo segue-se um exemplo de teste do funcionamento do código para a **AST** dada acima, em que o _output_ é uma lista de tuplos com as transições correspondentes:
 
 ![My Image](./img/guide.png)
