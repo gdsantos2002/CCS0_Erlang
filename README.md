@@ -18,7 +18,7 @@ On the server file, the functions available are:
 
 **translateCCS0**/2, which receives the _Pid_ and a string corresponding to the **CCS0** term, and returns the **AST**.
 
-Image 2 is a test run example for the program using all three functions:
+**Image 2** shows a test run example for the program using all three functions.
 
 ## Português
 
@@ -35,7 +35,7 @@ Por exemplo, o termo **a.0 + b.0** pode ser representado pela **AST** **{_choice
 
 ### Exemplo
 
-O termo **a.(b.0 + c.0)** pode ser representado pela **_AST_** **{_prefix_, 'a', {_choice_, {_prefix_, 'b', zero}, {_prefix_, 'c', zero}}}**, que é correspondente ao **LTS** da imagem 1.
+O termo **a.(b.0 + c.0)** pode ser representado pela **_AST_** **{_prefix_, 'a', {_choice_, {_prefix_, 'b', zero}, {_prefix_, 'c', zero}}}**, que é correspondente ao **LTS** da **imagem 1**.
 
 No server, estão disponíveis as seguintes funções:
 
@@ -45,7 +45,7 @@ No server, estão disponíveis as seguintes funções:
 
 **translateCCS0**/2, que recebe o _Pid_ e uma string correspondente ao termo **CCS0**, e retorna a **AST**.
 
-Na imagem 2, há um exemplo de teste do funcionamento do código para traduzir o termo CCS0 para um LTS, AST para LTS e CCS0 para ATS.
+Na **imagem 2**, há um exemplo de teste do funcionamento do código para traduzir o termo CCS0 para um LTS, AST para LTS e CCS0 para ATS.
 
 ## Images
 
