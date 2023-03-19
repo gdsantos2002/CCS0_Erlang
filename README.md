@@ -1,6 +1,32 @@
-# Primeiro Trabalho Prático de **Programação Concorrente**
+# First Practical Assignment - **Concurrent Programming**
 
-## Descrição 
+## English
+
+### Assignment 
+
+Write a program in **_Erlang_** to translate terms from **CCS0** (_deadlock_, prefix and non-deterministic choice) to the corresponding **_Labelled Transition System_** (**LTS**).
+
+### Example
+
+The term **a.(b.0 + c.0)** can be represented by the **_AST_** **{_prefix_, 'a', {_choice_, {_prefix_, 'b', zero}, {_prefix_, 'c', zero}}}**, which corresponds to the following **LTS**:
+
+![My Image](./img/lts.png)
+
+On the server file, the functions available are:
+
+**getLTSfromCCS0**/2, which receives the _Pid_ and the _string_ describing a **CCS0** term, e returns the corresponding **LTS**;
+
+**translateAST**/2, which receives the _Pid_ and the **AST** describing **CCS0**, e retorns the **LTS**;
+
+**translateCCS0**/2, which receives the _Pid_ and a string corresponding to the **CCS0** term, and returns the **AST**.
+
+Below is a test run example for the program using all three functions:
+
+![My Image](./img/guide.png)
+
+## Português
+
+### Descrição 
 
 Programa em **_Erlang_** para traduzir termos do **CCS0** (_deadlock_, prefixo e escolha não determinística) para o **_Labelled Transition System_** (**LTS**) correspondente.
 
@@ -11,7 +37,7 @@ Por exemplo, o termo **a.0 + b.0** pode ser representado pela **AST** **{_choice
 
 - 3) (valorização: 0,5 valores) Escreva um _parser_ que converte a _string_ correspondente ao termo **CCS0** na sua **AST**, e nesse caso envie a _string_ ao _server_. Pode implementar o _parser_ diretamente em **_Erlang_** ou utilizar um gerador de parsers (ex: https://www.erlang.org/doc/man/yecc.html).
 
-## Exemplo
+### Exemplo
 
 O termo **a.(b.0 + c.0)** pode ser representado pela **_AST_** **{_prefix_, 'a', {_choice_, {_prefix_, 'b', zero}, {_prefix_, 'c', zero}}}**, que é corespondente ao seguinte **LTS**:
 

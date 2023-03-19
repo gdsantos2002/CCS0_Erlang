@@ -57,10 +57,7 @@ tree({choice, R, {_, Y, Rest}}, List) -> L1 = tree(R, List),
 % test with :
 %   c(src).
 %   Pid = src:start().
-%   src:translate(Pid, {prefix, "a", {prefix, "b", zero}}).
-%   src:translate(Pid, {prefix, "a", {prefix, "b", {prefix, "c", zero}}}).
-%   src:translate(Pid, {choice, {prefix, "a", {prefix, "b", zero}}, zero}).
-%   src:translate(Pid, {choice, {prefix, "a", zero}, {prefix, "b", zero}}).
-%   src:translate(Pid, {prefix, "a", {choice, {prefix, "b", zero}, {prefix, "c", zero}}}).
-%   src:translate(Pid, {choice, {prefix, "a", {prefix, "c", zero}}, {prefix, "b", {prefix, "c", zero}}}).
-%   src:translate(Pid, {choice, {prefix, "a", {choice, {prefix, "c", {prefix, "e", {prefix, "h", zero}}}, {prefix, "d", {prefix, "f", {prefix, "h", zero}}}}}, {prefix, "b", {prefix, "g", zero}}}).
+%   src:translateCCSO(Pid, {"a.0 + b.0"}).
+%   src:getLTSfromCCS0(Pid, {"a.0 + b.0"}).
+%   src:translateAST(Pid, {choice, {prefix, "a", {prefix, "b", zero}}, zero}).
+%   src:translateAST(Pid, {choice, {prefix, "a", {choice, {prefix, "c", {prefix, "e", {prefix, "h", zero}}}, {prefix, "d", {prefix, "f", {prefix, "h", zero}}}}}, {prefix, "b", {prefix, "g", zero}}}).
