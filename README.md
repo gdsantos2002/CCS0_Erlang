@@ -10,13 +10,13 @@ Write a program in **_Erlang_** to translate terms from **CCS0** (_deadlock_, pr
 
 As the choice was to provide the **_AST_** in tuples, the terms are represented as such:
 
- - Prefix: **{_prefix_, 'a', 'b'}**;
- - Non-deterministic choice: **{_choice_, {_prefix_, 'a', zero}, {_prefix_, 'b', zero}}**;
+ - Prefix: **{_prefix_, a, b}**;
+ - Non-deterministic choice: **{_choice_, a, b}**;
  - And the deadlock is represented by the _atom_ **_zero_**. 
 
 ### Example
 
-The term **a.(b.0 + c.0)** can be represented by the **_AST_** **{_prefix_, 'a', {_choice_, {_prefix_, 'b', zero}, {_prefix_, 'c', zero}}}**, which corresponds to the **LTS** shown on image 1.
+The term **a.(b.0 + c.0)** can be represented by the **_AST_** **{_prefix_, a, {_choice_, {_prefix_, b, zero}, {_prefix_, c, zero}}}**, which corresponds to the **LTS** shown on image 1.
 
 ### Server
 
@@ -46,13 +46,13 @@ Por exemplo, o termo **a.0 + b.0** pode ser representado pela **AST** **{_choice
 ### Implementation choice
 Como a escolha foi representar a **_AST_** em tuplos, os termos são representados da seguinte maneira:
 
- - Prefixo: **{_prefix_, 'a', 'b'}**;
- - Escolha não-determinística: **{_choice_, {_prefix_, 'a', zero}, {_prefix_, 'b', zero}}**;
+ - Prefixo: **{_prefix_, a, b}**;
+ - Escolha não-determinística: **{_choice_, a, b}**;
  - E o deadlock é representado pelo _átomo_ **_zero_**. 
 
 ### Exemplo
 
-O termo **a.(b.0 + c.0)** pode ser representado pela **_AST_** **{_prefix_, 'a', {_choice_, {_prefix_, 'b', zero}, {_prefix_, 'c', zero}}}**, que é correspondente ao **LTS** da **imagem 1**.
+O termo **a.(b.0 + c.0)** pode ser representado pela **_AST_** **{_prefix_, a, {_choice_, {_prefix_, b, zero}, {_prefix_, c, zero}}}**, que é correspondente ao **LTS** da **imagem 1**.
 
 ### Servidor
 
