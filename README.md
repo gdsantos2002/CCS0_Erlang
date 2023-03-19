@@ -16,7 +16,7 @@ As the choice was to provide the **_AST_** in tuples, the terms are represented 
 
 ### Example
 
-The term **a.(b.0 + c.0)** can be represented by the **_AST_** **{_prefix_, a, {_choice_, {_prefix_, b, zero}, {_prefix_, c, zero}}}**, which corresponds to the **LTS** shown on image 1.
+The term **a.(b.0 + c.0)** can be represented by the **_AST_** **{_prefix_, a, {_choice_, {_prefix_, b, zero}, {_prefix_, c, zero}}}**, which corresponds to the **LTS** shown on **image 1**.
 
 ### Server
 
