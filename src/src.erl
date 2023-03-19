@@ -42,17 +42,19 @@ count_final_state_transitions([{_, _, "sf"}|R], N) -> count_final_state_transiti
 count_final_state_transitions([_|R], N) -> count_final_state_transitions(R, N).
 
 tree(zero, List) -> List;
-tree({prefix, X, zero}, List) -> List ++ [{string:concat("s", integer_to_list(length(List) - count_final_state_transitions(List, 0))), X, "sf"}]; 
-tree({prefix, X, R}, List) -> tree(R, List ++ [{string:concat("s", integer_to_list(length(List) - count_final_state_transitions(List, 0))), X, string:concat("s", integer_to_list(length(List) - count_final_state_transitions(List, 0) + 1))}]);
+tree({prefix, X, zero}, List) -> List ++ [{create_new_state(List, 0), X, "sf"}]; 
+tree({prefix, X, R}, List) -> tree(R, List ++ [{create_new_state(List, 0), X, create_new_state(List, 1)}]);
 
 tree({choice, R, zero}, List) -> tree(R, List);
 tree({choice, zero, R}, List) -> tree(R, List);
 
-tree({choice, R, {_, Y, zero}}, List) -> L1 = tree(R, List),
-    L1 ++ [{string:concat("s", integer_to_list(length(List))), Y, "sf"}];
+tree({choice, R, {_, X, zero}}, List) -> L1 = tree(R, List),
+    L1 ++ [{string:concat("s", integer_to_list(length(List))), X, "sf"}];
 
-tree({choice, R, {_, Y, Rest}}, List) -> L1 = tree(R, List),
-    tree(Rest, L1 ++ [{string:concat("s", integer_to_list(length(List) - count_final_state_transitions(List, 0))), Y, string:concat("s", integer_to_list(length(L1) - count_final_state_transitions(L1, 0) + 1))}]).
+tree({choice, R, {_, X, Rest}}, List) -> L1 = tree(R, List),
+    tree(Rest, L1 ++ [{create_new_state(List, 0), X, create_new_state(L1, 1)}]).
+
+create_new_state(List, V) -> string:concat("s", integer_to_list(length(List) - count_final_state_transitions(List, 0) + V)).
 
 % test with :
 %   c(src).
