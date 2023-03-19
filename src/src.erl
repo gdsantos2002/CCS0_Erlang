@@ -1,41 +1,41 @@
 -module(src).
--export([rm_spaces/1, clean/1, join_words/1, clean_input/1,
-    translate/2, tree/2, loop/0, start/0]).
-% -compile(export_all).         % avoid warnings
-
-
-%           Maybe it will be useful for the Parser
-
-
-% Remove all ' ' characters from the AST
-rm_spaces(AST) -> string:replace(AST, " ", "", all).
-
-% Remove all [] from a list
-clean(List) -> lists:filter(fun(X) -> X /= [] end, List).
-
-% Join a list of strings
-join_words(List) -> lists:concat(List).
-
-% Returns the AST without spaces (" " caracters)
-clean_input(AST) -> join_words(clean(rm_spaces(AST))).
-% test with: src:clean_input("a.0 + b.0").
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+-import(lexer, [string/1]).
+-import(parser, [parse/1]).
+-compile(export_all).         
 
 
 start() -> spawn(src, loop, []).
 
 loop() ->
     receive
-        {translate, From, AST} -> From ! {response, tree(AST, [])},
+        {translateAST, From, AST} -> From ! {response, tree(AST, [])},
+        loop();
+        {translateCCS0, From, CCS0} -> From ! {response, unwrap_AST(unpack(string(CCS0)))},
+        loop();
+        {getLTSfromCCS0, From, CCS0} -> From ! {response, call_tree(unpack(string(CCS0)))},
         loop()
     end.
 
-translate(Server, AST) -> Server ! {translate, self(), AST},
+translateAST(Server, AST) -> Server ! {translateAST, self(), AST},
     receive 
         {response, LTS} -> LTS
     end.
+
+translateCCS0(Server, CCS0) -> Server ! {translateCCS0, self(), CCS0},
+    receive 
+        {response, AST} -> AST
+    end.
+
+getLTSfromCCS0(Server, CCS0) -> Server ! {getLTSfromCCS0, self(), CCS0},
+    receive 
+        {response, LTS} -> LTS
+    end.
+
+call_tree({_, K}) -> tree(K, []).
+
+unpack({_, Tokens, _}) -> parse(Tokens). 
+
+unwrap_AST({_, K}) -> K.
 
 count_final_state_transitions([], N) -> N;
 count_final_state_transitions([{_, _, "sf"}|R], N) -> count_final_state_transitions(R, N+1);
