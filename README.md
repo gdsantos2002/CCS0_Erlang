@@ -12,9 +12,9 @@ The term **a.(b.0 + c.0)** can be represented by the **_AST_** **{_prefix_, 'a',
 
 On the server file, the functions available are:
 
-**getLTSfromCCS0**/2, which receives the _Pid_ and the _string_ describing a **CCS0** term, e returns the corresponding **LTS**;
+**getLTSfromCCS0**/2, which receives the _Pid_ and the _string_ describing a **CCS0** term, and returns the corresponding **LTS**;
 
-**translateAST**/2, which receives the _Pid_ and the **AST** describing **CCS0**, e retorns the **LTS**;
+**translateAST**/2, which receives the _Pid_ and the **AST** describing **CCS0**, and returns the **LTS**;
 
 **translateCCS0**/2, which receives the _Pid_ and a string corresponding to the **CCS0** term, and returns the **AST**.
 
