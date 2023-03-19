@@ -20,7 +20,7 @@ The term **a.(b.0 + c.0)** can be represented by the **_AST_** **{_prefix_, a, {
 
 ### Server
 
-On the server file, the functions available are:
+After compiling the **_lexer_**, **_parser_**, and **_src_** files, the functions available are:
 
 **getLTSfromCCS0**/2, which receives the _Pid_ and the _string_ describing a **CCS0** term, and returns the corresponding **LTS**;
 
@@ -56,7 +56,7 @@ O termo **a.(b.0 + c.0)** pode ser representado pela **_AST_** **{_prefix_, a, {
 
 ### Servidor
 
-No server, estão disponíveis as seguintes funções:
+Depois de compilar o **_lexer_**, o **_parser_** e o **_src_**, estão disponíveis as seguintes funções:
 
 **getLTSfromCCS0**/2, que recebe como argumento o _Pid_ e a _string_ correspondente ao termo **CCS0**, e retorna o **LTS** correspondente;
 
